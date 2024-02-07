@@ -30,7 +30,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy{
       this.remainingStarCount = Array(Math.round(10 - this.movie.voteAverage)).fill(0).map((x,i)=>i)
     });
 
-    this.movieService.getMovieUrl(id).subscribe(trailer => {
+    this.movieServiceGetMovieUrlSubscription = this.movieService.getMovieUrl(id).subscribe(trailer => {
       this.movieTrailer = `https://www.youtube.com/embed/${trailer}`
     })
   }
