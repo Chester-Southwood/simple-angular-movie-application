@@ -18,3 +18,4 @@ This is based on a old android app project using basic knowledge in angular and 
 * Make Usable for Desktop
 * Save State Between Pages, if viewing "now playing", should redirect back on that page instead of default.
   * Can save state using service (idea)
+* Add option to show Multiple Trailers instead of one hardcoded one, switch between buttons (disable the one that is playing).
