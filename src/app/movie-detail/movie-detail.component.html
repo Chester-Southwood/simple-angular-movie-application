@@ -1,0 +1,14 @@
+<div *ngIf="movie" class="container">
+  <h1 class="text-center">{{movie.title}}</h1>
+  <div *ngIf="movieTrailer" class="d-flex justify-content-center">
+    <iframe width="560" height="315" [src]= movieTrailer|safe frameborder="0" allowfullscreen></iframe>
+  </div>
+  <br>
+  <p>{{movie.overview}}</p>
+  <div class="mb-3">
+    <span *ngFor="let starNum of starCount" class="fa fa-star checked"></span>
+    <span *ngFor="let starNum of remainingStarCount" class="fa fa-star"></span>
+  </div>
+  <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1">View All</a>
+</div>
+

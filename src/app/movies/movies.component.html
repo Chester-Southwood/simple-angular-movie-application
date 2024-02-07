@@ -1,0 +1,13 @@
+<a href="{{NOW_PLAYING_URL}}">{{NOW_PLAYING_URL}}</a>
+
+<h1 class="text-center text-decoration-underline">Now Playing</h1>
+
+<div class="card" *ngFor="let movie of movies">
+  <h2 class="card-title text-center">{{movie.title}}</h2>
+  <div class="card-body">
+    <img src="https://image.tmdb.org/t/p/w500/{{movie.posterPath}}" class="card-img-top rounded-0">
+    <h6 class="card-subtitle mb-2 mt-2 text-center">Released: {{movie.releaseDate}}</h6>
+    <p class="card-text">{{movie.overview}}</p>
+    <a [routerLink]="['/movies', movie.movieId]" class="btn btn-success w-100">More</a>
+  </div>
+</div>
