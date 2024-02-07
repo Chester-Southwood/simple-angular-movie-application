@@ -1,4 +1,8 @@
 .card {
   border: none;
-  border-bottom-style:solid black 1;
+  border-bottom-style:solid;
+}
+
+.container {
+  --bs-bg-opacity: none
 }
