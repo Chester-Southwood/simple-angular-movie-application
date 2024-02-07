@@ -1,7 +1,10 @@
-<!-- <a href="{{NOW_PLAYING_URL}}">{{NOW_PLAYING_URL}}</a> -->
+<h1 class="text-center text-decoration-underline">{{this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon'}}</h1>
 
-<h1 class="text-center text-decoration-underline">Now Playing</h1>
-
+<div class="container bg-light mb-4">
+  <div class="col-md-12 text-center">
+      <button (click)="toggle()" type="button" class="btn btn-primary">Switch to {{ !this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon' }}</button>
+  </div>
+</div>
 <div class="card" *ngFor="let movie of movies">
   <h2 class="card-title text-center">{{movie.title}}</h2>
   <div class="card-body">

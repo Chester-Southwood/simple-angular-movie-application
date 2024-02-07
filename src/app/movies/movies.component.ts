@@ -17,7 +17,10 @@ export class MoviesComponent implements OnInit, OnDestroy{
 
   movies:Movie[] = [];
 
+  isShowingNowPlaying:boolean = false;
+
   private movieServiceFetchNowPlayingSubscription: Subscription;
+  private movieServiceFetchComingSoonSubscription: Subscription;
 
   constructor(private movieService:MovieService) {}
 
@@ -25,6 +28,23 @@ export class MoviesComponent implements OnInit, OnDestroy{
     this.movieServiceFetchNowPlayingSubscription = this.movieService.fetchNowPlayingMovies().subscribe(response => {
       this.movies = response;
     });
+  }
+
+  toggle(): void {
+    if (this.isShowingNowPlaying) {
+      this.isShowingNowPlaying = false;
+      this.movieServiceFetchComingSoonSubscription?.unsubscribe();
+      this.movieServiceFetchNowPlayingSubscription = this.movieService.fetchNowPlayingMovies().subscribe(response => {
+        this.movies = response;
+      });
+    } else {
+      this.isShowingNowPlaying = true;
+      this.movieServiceFetchNowPlayingSubscription?.unsubscribe();
+      this.movieServiceFetchComingSoonSubscription = this.movieService.fetchComingSoonMovies().subscribe(response => {
+        this.movies = response;
+        console.log("Switch");
+      });
+    }
   }
 
   ngOnDestroy(): void {

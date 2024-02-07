@@ -16,10 +16,19 @@ export class MovieService {
   }
 
   fetchNowPlayingMovies(): Observable<Movie[]>  {
+    return this.fetchMovies(this.NOW_PLAYING_URL);
+  }
+
+  fetchComingSoonMovies(): Observable<Movie[]>  {
+    return this.fetchMovies(this.COMING_SOON_URL);
+  }
+
+  private fetchMovies(url:string): Observable<Movie[]> {
     return this.http
-    .get<any>(this.NOW_PLAYING_URL)
+    .get<any>(url)
     .pipe(
       tap(x=> {
+        console.log("fetchMovies");
       }),
       map(response => {
         const movies:Movie[] = [];
