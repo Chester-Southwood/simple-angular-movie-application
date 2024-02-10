@@ -14,8 +14,8 @@ This is based on a old android app project using basic knowledge in angular and 
 * (Reference if have issues or need to reinitialize location - https://www.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466530)
 
 ### TODOs
-* Make Prettier for Mobile
-* Make Usable for Desktop
-* Save State Between Pages, if viewing "now playing", should redirect back on that page instead of default.
+* [x] Make Prettier for Mobile
+* [x] Make Usable for Desktop
+* [ ] Save State Between Pages, if viewing "now playing", should redirect back on that page instead of default.
   * Can save state using service (idea)
-* Add option to show Multiple Trailers instead of one hardcoded one, switch between buttons (disable the one that is playing).
+* [x] Add option to show Multiple Trailers instead of one hardcoded one, switch between buttons (disable the one that is playing).
