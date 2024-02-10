@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environment";
 import { HttpClient } from '@angular/common/http';
-import { Observable, first, map, of, tap } from "rxjs";
+import { Observable, first, map, of, take, tap } from "rxjs";
 import { Movie } from "src/models/Movie";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -55,14 +55,18 @@ export class MovieService {
   }
 
 
-  getMovieUrl(id: number):Observable<string> {
+  getMovieUrls(id: number, count: number):Observable<string[]> {
      return this.http
     .get<string>(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.apiKey}`)
     .pipe(
       map(x=> {
-         return x['results'][0]['key'];
+        let trailers:string[] = [];
+        for (let index = 0; index < count && index < x['results'].length; index++) {
+          trailers.push(x['results'][index]['key'])
+        }
+        return trailers;
       }),
-      first(),
+      tap(x => console.log(x))
       )
   }
 
@@ -97,5 +101,4 @@ export class MovieService {
   transform(url: any) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-
 }

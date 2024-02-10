@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class MovieDetailComponent implements OnInit, OnDestroy{
   movie:Movie;
-  movieTrailer:string;
+  movieTrailers:string[] = [];
+  movieTrailerIndex:number = 0;
   starCount: number[];
   remainingStarCount: number[];
 
@@ -23,15 +24,21 @@ export class MovieDetailComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     const id:number = +this.activeRoute.snapshot.params['id'];
-
     this.movieServiceByIdSubscription = this.movieService.getMovieById(id).subscribe(movie => {
       this.movie = movie;
       this.starCount = Array(Math.round(this.movie.voteAverage)).fill(0).map((x,i)=>i)
       this.remainingStarCount = Array(Math.round(10 - this.movie.voteAverage)).fill(0).map((x,i)=>i)
     });
 
-    this.movieServiceGetMovieUrlSubscription = this.movieService.getMovieUrl(id).subscribe(trailer => {
-      this.movieTrailer = `https://www.youtube.com/embed/${trailer}`
+    const trailerCount: number = 4;
+    this.movieServiceGetMovieUrlSubscription = this.movieService.getMovieUrls(id, trailerCount).subscribe(trailers => {
+      let movieTrailers:string[] = [];
+      for (let index = 0; index < trailers.length; index++) {
+        movieTrailers.push(`https://www.youtube.com/embed/${trailers[index]}`);
+        console.log(`${trailers[index]}`)
+      }
+      this.movieTrailers = movieTrailers;
+      this.movieTrailerIndex = Math.floor(Math.random() * trailerCount)
     })
   }
 
@@ -40,6 +47,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy{
     this.movieServiceGetMovieUrlSubscription.unsubscribe();
   }
 
-
+  updateVideo(event: Event) {
+    this.movieTrailerIndex = +event.target['value'];
+  }
 
 }

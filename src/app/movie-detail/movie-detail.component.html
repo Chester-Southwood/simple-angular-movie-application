@@ -1,7 +1,21 @@
 <div *ngIf="movie" class="container">
   <h1 class="text-center">{{movie.title}}</h1>
-  <div *ngIf="movieTrailer" class="d-flex justify-content-center">
-    <iframe width="560" height="315" [src]= movieTrailer|safe frameborder="0" allowfullscreen></iframe>
+  <div class="d-flex justify-content-center flex-row">
+    <div class="justify-content-between">
+      <div *ngIf="movieTrailers" class="p-2 w-100">
+        <iframe width="560" height="315" [src]= movieTrailers[movieTrailerIndex]|safe frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="btn-group p-2 w-100" role="group" aria-label="Basic radio toggle button group">
+        <input *ngIf="movieTrailers.length > 0" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="0" [checked]="movieTrailerIndex === 0" (click)="updateVideo($event)">
+        <label *ngIf="movieTrailers.length > 0" class="btn btn-outline-primary" for="btnradio1">Trailer 1</label>
+        <input *ngIf="movieTrailers.length > 1" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="1" [checked]="movieTrailerIndex === 1" (click)="updateVideo($event)">
+        <label *ngIf="movieTrailers.length > 1" class="btn btn-outline-primary" for="btnradio2">Trailer 2</label>
+        <input *ngIf="movieTrailers.length > 2" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="2" [checked]="movieTrailerIndex === 2" (click)="updateVideo($event)">
+        <label *ngIf="movieTrailers.length > 2" class="btn btn-outline-primary" for="btnradio3">Trailer 3</label>
+        <input *ngIf="movieTrailers.length > 3" type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3" [checked]="movieTrailerIndex === 3" (click)="updateVideo($event)">
+        <label *ngIf="movieTrailers.length > 3" class="btn btn-outline-primary" for="btnradio4">Trailer 4</label>
+      </div>
+    </div>
   </div>
   <br>
   <p>{{movie.overview}}</p>
@@ -11,4 +25,3 @@
   </div>
   <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1">View All</a>
 </div>
-

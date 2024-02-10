@@ -1,9 +1,18 @@
-<h1 class="text-center text-decoration-underline">{{this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon'}}</h1>
+<h1 class="text-center text-decoration-underline">{{this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon'}}
+</h1>
 
 <div class="container">
   <div class="bg-light mb-4">
     <div class="col-md-12 text-center">
-        <button (click)="toggle()" type="button" class="btn btn-primary">Switch to {{ !this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon' }}</button>
+        <button (click)="toggle()" type="button" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
+          </svg>
+          Switch to {{ !this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon' }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
+          </svg>
+        </button>
     </div>
   </div>
   <div class="row">
@@ -13,7 +22,7 @@
         <img src="https://image.tmdb.org/t/p/w500/{{movie.posterPath}}" class="card-img-top rounded-0">
         <h6 class="card-subtitle mb-2 mt-2 text-center">Released: {{movie.releaseDate}}</h6>
         <p class="card-text">{{movie.overview | truncateString:140}}...</p>
-        <a [routerLink]="['/movies', movie.movieId]" class="btn btn-primary d-grid" type="button">More</a>
+        <a [routerLink]="['/movies', movie.movieId]" class="btn btn-primary d-grid align-self-end" type="button">More</a>
       </div>
     </div>
   </div>
