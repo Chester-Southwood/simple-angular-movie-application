@@ -27,6 +27,7 @@ export class MoviesComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.movieServiceFetchNowPlayingSubscription = this.movieService.fetchNowPlayingMovies().subscribe(response => {
       this.movies = response;
+      this.orderMoviesByAlphabet();
     });
   }
 
@@ -36,18 +37,26 @@ export class MoviesComponent implements OnInit, OnDestroy{
       this.movieServiceFetchComingSoonSubscription?.unsubscribe();
       this.movieServiceFetchNowPlayingSubscription = this.movieService.fetchNowPlayingMovies().subscribe(response => {
         this.movies = response;
+        this.orderMoviesByAlphabet();
       });
     } else {
       this.isShowingNowPlaying = true;
       this.movieServiceFetchNowPlayingSubscription?.unsubscribe();
       this.movieServiceFetchComingSoonSubscription = this.movieService.fetchComingSoonMovies().subscribe(response => {
         this.movies = response;
-        console.log("Switch");
+        this.orderMoviesByAlphabet();
       });
     }
   }
 
   ngOnDestroy(): void {
     this.movieServiceFetchNowPlayingSubscription.unsubscribe();
+  }
+
+  private orderMoviesByAlphabet(): void {
+    this.movies.sort((x, y) => {
+      if (x.title < y.title) return -1;
+      else x.title > y.title ? 1 : 0;
+    })
   }
 }

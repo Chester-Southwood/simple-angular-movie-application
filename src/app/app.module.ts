@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { SafePipe } from './pipes/safe.pipe';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MoviesComponent } from './movies/movies.component';
+import { TruncateStringPipe } from './truncate-string.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SafePipe,
     MovieDetailComponent,
-    MoviesComponent
+    MoviesComponent,
+    TruncateStringPipe
   ],
   imports: [
     BrowserModule,

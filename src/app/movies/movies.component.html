@@ -1,16 +1,20 @@
 <h1 class="text-center text-decoration-underline">{{this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon'}}</h1>
 
-<div class="container bg-light mb-4">
-  <div class="col-md-12 text-center">
-      <button (click)="toggle()" type="button" class="btn btn-primary">Switch to {{ !this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon' }}</button>
+<div class="container">
+  <div class="bg-light mb-4">
+    <div class="col-md-12 text-center">
+        <button (click)="toggle()" type="button" class="btn btn-primary">Switch to {{ !this.isShowingNowPlaying ? 'Now Playing' : 'Coming Soon' }}</button>
+    </div>
   </div>
-</div>
-<div class="card" *ngFor="let movie of movies">
-  <h2 class="card-title text-center">{{movie.title}}</h2>
-  <div class="card-body">
-    <img src="https://image.tmdb.org/t/p/w500/{{movie.posterPath}}" class="card-img-top rounded-0">
-    <h6 class="card-subtitle mb-2 mt-2 text-center">Released: {{movie.releaseDate}}</h6>
-    <p class="card-text">{{movie.overview}}</p>
-    <a [routerLink]="['/movies', movie.movieId]" class="btn btn-success w-100">More</a>
+  <div class="row">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let movie of movies">
+      <h4 class="card-title text-center mb-1">{{movie.title}}</h4>
+      <div class="card-body">
+        <img src="https://image.tmdb.org/t/p/w500/{{movie.posterPath}}" class="card-img-top rounded-0">
+        <h6 class="card-subtitle mb-2 mt-2 text-center">Released: {{movie.releaseDate}}</h6>
+        <p class="card-text">{{movie.overview | truncateString:140}}...</p>
+        <a [routerLink]="['/movies', movie.movieId]" class="btn btn-primary d-grid" type="button">More</a>
+      </div>
+    </div>
   </div>
 </div>
