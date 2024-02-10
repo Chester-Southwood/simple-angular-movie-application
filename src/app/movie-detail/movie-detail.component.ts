@@ -38,7 +38,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy{
         console.log(`${trailers[index]}`)
       }
       this.movieTrailers = movieTrailers;
-      this.movieTrailerIndex = Math.floor(Math.random() * trailerCount)
+      this.movieTrailerIndex = 0;//Math.floor(Math.random() * trailerCount)
     })
   }
 

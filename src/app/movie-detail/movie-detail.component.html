@@ -2,10 +2,10 @@
   <h1 class="text-center">{{movie.title}}</h1>
   <div class="d-flex justify-content-center flex-row">
     <div class="justify-content-between">
-      <div *ngIf="movieTrailers" class="p-2 w-100">
-        <iframe width="560" height="315" [src]= movieTrailers[movieTrailerIndex]|safe frameborder="0" allowfullscreen></iframe>
+      <div *ngIf="movieTrailers" class="text-center">
+        <iframe style="aspect-ratio: 16/9; width:100%; max-width:1000px;" [src]= movieTrailers[movieTrailerIndex]|safe frameborder="0" allowfullscreen></iframe>
       </div>
-      <div class="btn-group p-2 w-100" role="group" aria-label="Basic radio toggle button group">
+      <div class="btn-group w-100 mt-2" role="group" aria-label="Basic radio toggle button group">
         <input *ngIf="movieTrailers.length > 0" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="0" [checked]="movieTrailerIndex === 0" (click)="updateVideo($event)">
         <label *ngIf="movieTrailers.length > 0" class="btn btn-outline-primary" for="btnradio1">Trailer 1</label>
         <input *ngIf="movieTrailers.length > 1" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="1" [checked]="movieTrailerIndex === 1" (click)="updateVideo($event)">
@@ -15,13 +15,13 @@
         <input *ngIf="movieTrailers.length > 3" type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3" [checked]="movieTrailerIndex === 3" (click)="updateVideo($event)">
         <label *ngIf="movieTrailers.length > 3" class="btn btn-outline-primary" for="btnradio4">Trailer 4</label>
       </div>
+      <br>
+      <p class="mt-2">{{movie.overview}}</p>
+      <div class="mb-3">
+        <span *ngFor="let starNum of starCount" class="fa fa-star checked"></span>
+        <span *ngFor="let starNum of remainingStarCount" class="fa fa-star"></span>
+      </div>
+      <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1 mb-3">View All</a>
     </div>
   </div>
-  <br>
-  <p>{{movie.overview}}</p>
-  <div class="mb-3">
-    <span *ngFor="let starNum of starCount" class="fa fa-star checked"></span>
-    <span *ngFor="let starNum of remainingStarCount" class="fa fa-star"></span>
-  </div>
-  <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1">View All</a>
 </div>
