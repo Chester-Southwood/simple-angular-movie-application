@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environment";
 import { HttpClient } from '@angular/common/http';
-import { Observable, first, map, of, take, tap } from "rxjs";
+import { Observable, map, tap } from "rxjs";
 import { Movie } from "src/models/Movie";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -27,12 +27,9 @@ export class MovieService {
     return this.http
     .get<any>(url)
     .pipe(
-      tap(x=> {
-        console.log("fetchMovies");
-      }),
       map(response => {
         const movies:Movie[] = [];
-        response.results.forEach( item => {
+        response.results.forEach(item => {
           movies.push({
             title: item['title'],
             isAdultRated: JSON.parse(item['adult']),
@@ -65,8 +62,7 @@ export class MovieService {
           trailers.push(x['results'][index]['key'])
         }
         return trailers;
-      }),
-      tap(x => console.log(x))
+      })
       )
   }
 

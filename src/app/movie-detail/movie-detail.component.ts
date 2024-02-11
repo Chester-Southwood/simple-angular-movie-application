@@ -35,7 +35,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy{
       let movieTrailers:string[] = [];
       for (let index = 0; index < trailers.length; index++) {
         movieTrailers.push(`https://www.youtube.com/embed/${trailers[index]}`);
-        console.log(`${trailers[index]}`)
       }
       this.movieTrailers = movieTrailers;
       this.movieTrailerIndex = 0;//Math.floor(Math.random() * trailerCount)
