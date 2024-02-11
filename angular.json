@@ -27,6 +27,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
+              "src/popcorn.ico",
               "src/assets"
             ],
             "styles": [
@@ -94,6 +95,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
+              "src/popcorn.ico",
               "src/assets"
             ],
             "styles": [
