@@ -16,12 +16,16 @@
         <label *ngIf="movieTrailers.length > 3" class="btn btn-outline-primary" for="btnradio4">Trailer 4</label>
       </div>
       <br>
-      <p class="mt-2">{{movie.overview}}</p>
+      <div>
+        <p class="fw-bold mb-0 mt-2">Description:</p>
+        <p>{{movie.overview}}</p>
+      </div>
       <div class="mb-3">
+        <p class="mb-0 fw-bold">Rating:</p>
         <span *ngFor="let starNum of starCount" class="fa fa-star checked"></span>
         <span *ngFor="let starNum of remainingStarCount" class="fa fa-star"></span>
       </div>
-      <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1 mb-3">View All</a>
+      <a [routerLink]="['/movies']" class="btn btn-success w-100 mt-1 mb-3">View All Movies</a>
     </div>
   </div>
 </div>
